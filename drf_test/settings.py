@@ -130,15 +130,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_RENDERER_CLASSES':       [
-        'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS':           'rest_framework.schemas.coreapi.AutoSchema'
 }
-
 INTERNAL_IPS = [
     '127.0.0.1',
 ]

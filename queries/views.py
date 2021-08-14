@@ -30,20 +30,20 @@ class SelfReferenceView(APIView):
         res_serializer = SelfReferenceSerializer(objs, many=True)
         print(objs[0])
 
-        data = {
-            'name': str(datetime.datetime.now()),
-            # 'parent': 10
-            # 'parent': objs[0]
-            'parent_id': 15
-        }
-        serializer_create = SelfReferenceSerializer(data=data)
-        if serializer_create.is_valid(raise_exception=True):
-            res = serializer_create.save(
-                # parent=objs[2]
-                # parent=None
-            )
-            print(res)
-            print(serializer_create.data)
+        # data = {
+        #     'name': str(datetime.datetime.now()),
+        #     # 'parent': 10
+        #     # 'parent': objs[0]
+        #     # 'parent_id': 1
+        # }
+        # serializer_create = SelfReferenceSerializer(data=data)
+        # if serializer_create.is_valid(raise_exception=True):
+        #     res = serializer_create.save(
+        #         parent=objs[2]
+        #         # parent=None
+        #     )
+        #     print(res)
+        #     print(serializer_create.data)
         # SelfReference.objects.create(name=str(datetime.datetime.now()), parent=objs[0])
         return Response(res_serializer.data, 200)
 

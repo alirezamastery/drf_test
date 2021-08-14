@@ -15,18 +15,23 @@ class ChildSerializer(serializers.ModelSerializer):
 
 
 class SelfReferenceSerializer(serializers.ModelSerializer):
-    parent_id = serializers.PrimaryKeyRelatedField(queryset=Parent.objects.all(),
-                                                   allow_null=True, required=False)
+    # parent_id = serializers.PrimaryKeyRelatedField(queryset=Parent.objects.all(),
+    #                                                allow_null=True, required=False)
 
     class Meta:
         model = SelfReference
-        fields = ['name' ,'parent', 'parent_id']
+        fields = ['name', 'parent', 'parent_id']
         # fields ='__all__'
         depth = 1
-    # def to_representation(self, instance):
-    #     res = super().to_representation(instance)
-    #     res['pp'] = 'opp'
-    #     return res
+
+    def to_representation(self, instance):
+        res = super().to_representation(instance)
+        res['pp'] = 'opp'
+        # res['parent']['llll'] = 'opplll'
+        if res['parent'] is not None:
+            res['parent']['sdasd'] = 'asdasd'
+        print(res['parent'])
+        return res
 
 
 class FieldNameChangeSerializer(serializers.ModelSerializer):
