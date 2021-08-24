@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'rest_framework',
+    'django_filters',
     'queries.apps.QueriesConfig',
     'view_set.apps.ViewSetConfig',
 ]
