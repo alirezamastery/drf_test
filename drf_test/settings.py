@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'queries.apps.QueriesConfig',
     'view_set.apps.ViewSetConfig',
+    'writable_nested.apps.WritableNestedConfig',
 ]
 
 MIDDLEWARE = [
