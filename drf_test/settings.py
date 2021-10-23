@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'writable_nested.apps.WritableNestedConfig',
     'filters.apps.FiltersConfig',
     'auth_test.apps.AuthTestConfig',
+    'm2m_through.apps.M2MThroughConfig',
 ]
 
 MIDDLEWARE = [
