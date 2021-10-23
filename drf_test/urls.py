@@ -18,6 +18,7 @@ urlpatterns = [
     path('view_set/', include('view_set.urls')),
     path('filters/', include('filters.urls')),
     path('auth_test/', include('auth_test.urls')),
+    path('api/chat/', include('m2m_through.urls')),
 
     # drf schema and docs
     path('docs/', include_docs_urls(title='Test API', public=False)),
