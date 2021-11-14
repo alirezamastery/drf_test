@@ -16,7 +16,7 @@ class MarathonChallenge(models.Model):
     marathon = models.ForeignKey('Marathon', on_delete=models.CASCADE)
     challenge = models.ForeignKey('Challenge', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
-    start_date = models.DateTimeField(default=timezone.now())
+    start_date = models.DateTimeField(default=timezone.now)
 
     class Meta:
         constraints = [

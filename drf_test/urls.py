@@ -5,6 +5,7 @@ from rest_framework.documentation import include_docs_urls
 import debug_toolbar
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from django.views.generic import TemplateView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 
 urlpatterns = [
@@ -18,7 +19,9 @@ urlpatterns = [
     path('view_set/', include('view_set.urls')),
     path('filters/', include('filters.urls')),
     path('auth_test/', include('auth_test.urls')),
-    path('api/chat/', include('m2m_through.urls')),
+    path('api/m2m_through/', include('m2m_through.urls')),
+    path('api/m2m/', include('m2m.urls')),
+    path('api/bulk/', include('bulk_update.api.urls')),
 
     # drf schema and docs
     path('docs/', include_docs_urls(title='Test API', public=False)),
@@ -28,10 +31,10 @@ urlpatterns = [
         version='1.0',
         # renderer_classes=[renderers.JSONOpenAPIRenderer]
     ), name='openapi-schema'),
-    # Route TemplateView to serve Swagger UI template.
-    #   * Provide `extra_context` with view name of `SchemaView`.
-    # path('swagger-ui/', TemplateView.as_view(
-    #     template_name='swagger-ui.html',
-    #     extra_context={'schema_url': 'openapi-schema'}
-    # ), name='swagger-ui'),
+
+    # YOUR PATTERNS
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'rest_framework_simplejwt',
+    'drf_spectacular',
 
     'queries.apps.QueriesConfig',
     'view_set.apps.ViewSetConfig',
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     'filters.apps.FiltersConfig',
     'auth_test.apps.AuthTestConfig',
     'm2m_through.apps.M2MThroughConfig',
+    'm2m.apps.M2MConfig',
+    'bulk_update.apps.BulkUpdateConfig',
 ]
 
 MIDDLEWARE = [
@@ -147,7 +150,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_SCHEMA_CLASS':           'rest_framework.schemas.coreapi.AutoSchema'
+    # 'DEFAULT_SCHEMA_CLASS':           'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS':           'drf_spectacular.openapi.AutoSchema',
+
 }
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -182,4 +187,10 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME':          timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME':  timedelta(days=1),
+}
+
+
+SPECTACULAR_SETTINGS = {
+    'SCHEMA_PATH_PREFIX':   r'/api/*',
+    'SERVE_INCLUDE_SCHEMA': False
 }
