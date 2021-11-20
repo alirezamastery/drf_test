@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework_simplejwt',
     'drf_spectacular',
+    'constance',
+    'constance.backends.database',
 
     'queries.apps.QueriesConfig',
     'view_set.apps.ViewSetConfig',
@@ -189,8 +191,23 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME':  timedelta(days=1),
 }
 
-
 SPECTACULAR_SETTINGS = {
     'SCHEMA_PATH_PREFIX':   r'/api/*',
     'SERVE_INCLUDE_SCHEMA': False
 }
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'Instagram': ('', 'URL', str),
+}
+
+# CONSTANCE_CONFIG = {
+#     'SITE_NAME': ('My Title', 'Website title'),
+#     'SITE_DESCRIPTION': ('', 'Website description'),
+#     'THEME': ('light-blue', 'Website theme'),
+# }
+#
+# CONSTANCE_CONFIG_FIELDSETS = {
+#     'General Options': ('SITE_NAME', 'SITE_DESCRIPTION'),
+#     'Theme Options': ('THEME',),
+# }
