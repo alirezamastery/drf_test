@@ -154,7 +154,7 @@ REST_FRAMEWORK = {
     ),
     # 'DEFAULT_SCHEMA_CLASS':           'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_SCHEMA_CLASS':           'drf_spectacular.openapi.AutoSchema',
-
+    'EXCEPTION_HANDLER':              'drf_test.views.custom_exception_handler'
 }
 INTERNAL_IPS = [
     '127.0.0.1',
