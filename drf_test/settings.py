@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'm2m_through.apps.M2MThroughConfig',
     'm2m.apps.M2MConfig',
     'bulk_update.apps.BulkUpdateConfig',
+    'question',
 ]
 
 MIDDLEWARE = [
