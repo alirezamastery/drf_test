@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/m2m/', include('m2m.urls')),
     path('api/bulk/', include('bulk_update.api.urls')),
     path('api/question/', include('question.urls')),
+    path('api/perms/', include('permission.urls')),
 
     # drf schema and docs
     path('docs/', include_docs_urls(title='Test API', public=False)),

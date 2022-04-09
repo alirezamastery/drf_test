@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'constance',
     'constance.backends.database',
+    'guardian',
 
     'queries.apps.QueriesConfig',
     'view_set.apps.ViewSetConfig',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'm2m.apps.M2MConfig',
     'bulk_update.apps.BulkUpdateConfig',
     'question',
+    'permission',
 ]
 
 MIDDLEWARE = [
@@ -212,3 +214,8 @@ CONSTANCE_CONFIG = {
 #     'General Options': ('SITE_NAME', 'SITE_DESCRIPTION'),
 #     'Theme Options': ('THEME',),
 # }
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # default
+    'guardian.backends.ObjectPermissionBackend',
+]
