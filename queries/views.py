@@ -10,6 +10,7 @@ from .serializers import ParentSerializer, ChildSerializer, SelfReferenceSeriali
 
 
 class Responder(APIView):
+
     def get(self, request):
         # parent = Parent.objects.first()
         data = {
@@ -25,6 +26,7 @@ class Responder(APIView):
 
 
 class SelfReferenceView(APIView):
+
     def get(self, request):
         objs = SelfReference.objects.all().select_related('parent')
         res_serializer = SelfReferenceSerializer(objs, many=True)
@@ -49,6 +51,7 @@ class SelfReferenceView(APIView):
 
 
 class BeforeAfterItemsView(APIView):
+
     def get(self, request):
         obj = SelfReference.objects.get(id=10)
         pre_objs = SelfReference.objects.filter(id__lt=10).order_by('-id')[:5]
@@ -68,6 +71,7 @@ class BeforeAfterItemsView(APIView):
 
 
 class FieldNameChangeView(APIView):
+
     def get(self, request):
         obj = SelfReference.objects.first()
         serializer = FieldNameChangeSerializer(obj)
@@ -79,6 +83,7 @@ class FieldNameChangeView(APIView):
 
 
 class CreateSelfView(APIView):
+
     def get(self, request):
         parent = SelfReference.objects.first()
         # obj = SelfReference.objects.create(name='chaikin', parent=parent)
