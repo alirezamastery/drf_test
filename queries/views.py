@@ -91,3 +91,18 @@ class CreateSelfView(APIView):
             'obj': serializer.data,
         }
         return Response(response, 200)
+
+
+class MultipleFilesView(APIView):
+
+    def post(self, request):
+        print(request.data)
+        print(request.data.get('images'))
+        # print(request.data.lists())
+        for item in request.data.lists():
+            print(item)
+        data = dict(request.data.lists())
+        print(data)
+        for img in data['images']:
+            print(img)
+        return Response({'info': 'ok'})

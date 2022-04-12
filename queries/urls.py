@@ -10,4 +10,5 @@ urlpatterns = [
     path('range/', BeforeAfterItemsView.as_view()),
     path('change-name/', FieldNameChangeView.as_view()),
     path('create/', CreateSelfView.as_view()),
+    path('files/', MultipleFilesView.as_view()),
 ]
