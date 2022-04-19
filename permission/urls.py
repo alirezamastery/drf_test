@@ -5,7 +5,8 @@ from .views import *
 
 
 urlpatterns = [
-    path('user-perms/', UserPermissionsView.as_view())
+    path('user-perms/', UserPermissionsView.as_view()),
+    path('update-perms/', UpdatePermission.as_view()),
 ]
 
 router = DefaultRouter()
