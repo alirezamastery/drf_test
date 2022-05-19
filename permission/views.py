@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import DjangoModelPermissions, DjangoObjectPermissions, BasePermission
 from rest_framework_guardian.filters import ObjectPermissionsFilter
 from django.contrib.auth.models import Permission, User
+from django.shortcuts import get_object_or_404
 from guardian.shortcuts import remove_perm, assign_perm
 
 from .models import *
@@ -41,8 +42,8 @@ class CustomObjectPermissions(DjangoObjectPermissions):
 class CustomerAccessPermission(BasePermission):
 
     def has_permission(self, request, view):
-        print('custom:', request.user.username)
-        print(f'{view = }')
+        print(f'has_permission | custom:', request.user.username)
+        print(f'has_permission | {view = }')
         if request.user.username == 'alirez':
             return False
         return True
@@ -58,12 +59,34 @@ class BlogPostViewSet(ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
     # permission_classes = [CanViewModel]
-    permission_classes = [CustomObjectPermissions, CustomerAccessPermission]
+    permission_classes = [CanViewModel , CustomObjectPermissions]
     filter_backends = [ObjectPermissionsFilter]
 
     def list(self, request, *args, **kwargs):
-        print(f'perm: {request.user.has_perm("view_blogpost")}')
+        print(f'user: {request.user} | perm: {request.user.has_perm("permission.view_blogpost")}')
         return super().list(request, *args, **kwargs)
+
+    def retrieve(self, request, *args, **kwargs):
+        user = User.objects.get(pk=2)
+        instance = self.get_object()
+        print(f'user: {user} | perm: {user.has_perm("permission.view_blogpost", instance)}')
+        return super().retrieve(request, *args, **kwargs)
+
+
+class UpdatePermission(APIView):
+
+    def post(self, request):
+        user_id = request.data.get('user_id')
+        obj_id = request.data.get('obj_id')
+        has_permission = request.data.get('has_permission')
+        print(f'{user_id = } | {obj_id = } | {has_permission = }')
+        user = get_object_or_404(User, pk=user_id)
+        obj = get_object_or_404(BlogPost, pk=obj_id)
+        if has_permission is True:
+            assign_perm('view_blogpost', user, obj)
+        else:
+            remove_perm('view_blogpost', user, obj)
+        return Response({'info': 'ok'})
 
 
 class UserPermissionsView(APIView):
