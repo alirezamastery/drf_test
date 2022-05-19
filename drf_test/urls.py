@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/bulk/', include('bulk_update.api.urls')),
     path('api/question/', include('question.urls')),
     path('api/perms/', include('permission.urls')),
+    path('api/version/', include('versioning.api.urls')),
 
     # drf schema and docs
     path('docs/', include_docs_urls(title='Test API', public=False)),

@@ -57,11 +57,13 @@ INSTALLED_APPS = [
     'bulk_update.apps.BulkUpdateConfig',
     'question',
     'permission',
+    'versioning',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'versioning.middlewares.SimpleMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -157,7 +159,8 @@ REST_FRAMEWORK = {
     ),
     # 'DEFAULT_SCHEMA_CLASS':           'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_SCHEMA_CLASS':           'drf_spectacular.openapi.AutoSchema',
-    'EXCEPTION_HANDLER':              'drf_test.views.custom_exception_handler'
+    'EXCEPTION_HANDLER':              'drf_test.views.custom_exception_handler',
+    'DEFAULT_VERSIONING_CLASS':       'rest_framework.versioning.NamespaceVersioning'
 }
 INTERNAL_IPS = [
     '127.0.0.1',
