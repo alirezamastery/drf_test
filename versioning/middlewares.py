@@ -7,10 +7,10 @@ class SimpleMiddleware:
         # Code to be executed for each request before
         # the view (and later middleware) are called.
         print(f'middleware: {request}')
-        for k,v in request.__dict__.items():
-            print(f'{k:<20} : {v}')
-        if request.path.startswith('/api'):
-            print('api*****************')
+        # for k,v in request.__dict__.items():
+        #     print(f'{k:<20} : {v}')
+        # if request.path.startswith('/api'):
+        #     print('api*****************')
 
         response = self.get_response(request)
 

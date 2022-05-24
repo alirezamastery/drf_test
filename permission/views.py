@@ -42,9 +42,9 @@ class CustomObjectPermissions(DjangoObjectPermissions):
 class CustomerAccessPermission(BasePermission):
 
     def has_permission(self, request, view):
-        print(f'has_permission | custom:', request.user.username)
-        print(f'has_permission | {view = }')
-        if request.user.username == 'alirez':
+        print(f'has_permission custom | user:', request.user.username)
+        print(f'has_permission custom | {view = }')
+        if request.user.username == 'alireza':
             return False
         return True
 
@@ -59,8 +59,9 @@ class BlogPostViewSet(ModelViewSet):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
     # permission_classes = [CanViewModel]
-    permission_classes = [CanViewModel , CustomObjectPermissions]
-    filter_backends = [ObjectPermissionsFilter]
+    permission_classes = [CustomObjectPermissions]
+    # permission_classes = [CustomerAccessPermission]
+    filter_backends = [ObjectPermissionsFilter]  # required for CustomObjectPermissions in GET list
 
     def list(self, request, *args, **kwargs):
         print(f'user: {request.user} | perm: {request.user.has_perm("permission.view_blogpost")}')
