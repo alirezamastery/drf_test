@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'question',
     'permission',
     'versioning',
+    'serialize',
 ]
 
 MIDDLEWARE = [
